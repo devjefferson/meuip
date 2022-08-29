@@ -5,13 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = ({ params }: any) => {
-  const [myip, setMyip] = useState();
-
-  useEffect(() => {
-    setMyip(params);
-  }, [params]);
-
-  if (!myip) {
+  if (!params) {
     return <h1>Load</h1>;
   }
   return (
@@ -23,7 +17,7 @@ const Home: NextPage = ({ params }: any) => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Seu Ip é: {myip}</h1>
+        <h1 className={styles.title}>Seu Ip é: {params}</h1>
       </main>
 
       <footer className={styles.footer}></footer>
