@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = ({ params }: any) => {
-  const [myip, setMyip] = useState("");
+  const [myip, setMyip] = useState();
 
   useEffect(() => {
     setMyip(params);
   }, [params]);
 
+  if (!myip) {
+    return <h1>Load</h1>;
+  }
   return (
     <div className={styles.container}>
       <Head>
