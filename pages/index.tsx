@@ -1,22 +1,16 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
-const Home: NextPage = () => {
-  const [myip, setMyip] = useState();
+const Home: NextPage = ({ params }: any) => {
+  const [myip, setMyip] = useState("");
 
-  async function webW() {
-    const web = await fetch("http://ip-api.com/json/", {
-      method: "GET",
-    });
-
-    setMyip((await web.json()).query);
-  }
   useEffect(() => {
-    webW();
-  }, []);
+    setMyip(params);
+  }, [params]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -32,6 +26,19 @@ const Home: NextPage = () => {
       <footer className={styles.footer}></footer>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  try {
+    const web = await fetch("http://ip-api.com/json/", {
+      method: "GET",
+    });
+
+    const params = await web.json();
+    return { props: { params: params.query } };
+  } catch (error: any) {
+    return { props: {} };
+  }
 };
 
 export default Home;
