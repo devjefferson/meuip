@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     webIp();
-    console.log("ip:", meuIp);
+    console.log("ip2:", meuIp);
   }, []);
 
   return (
