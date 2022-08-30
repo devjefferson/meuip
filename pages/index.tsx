@@ -4,10 +4,25 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
-const Home: NextPage = ({ params }: any) => {
-  if (!params) {
+const Home: NextPage = () => {
+  const [meuIp, setMeuIp] = useState();
+
+  async function webIp() {
+    const Ip = await fetch("http://ip-api.com/json/", {
+      method: "GET",
+    });
+
+    setMeuIp((await Ip.json()).query);
+  }
+
+  useEffect(() => {
+    webIp();
+  }, []);
+
+  if (!meuIp) {
     return <h1>Load</h1>;
   }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,25 +32,12 @@ const Home: NextPage = ({ params }: any) => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Seu Ip é: {params}</h1>
+        <h1 className={styles.title}>Seu Ip é: {meuIp}</h1>
       </main>
 
       <footer className={styles.footer}></footer>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  try {
-    const web = await fetch("http://ip-api.com/json/", {
-      method: "GET",
-    });
-
-    const params = await web.json();
-    return { props: { params: params.query } };
-  } catch (error: any) {
-    return { props: {} };
-  }
 };
 
 export default Home;
