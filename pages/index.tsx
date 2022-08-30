@@ -18,11 +18,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     webIp();
     console.log("ip:", meuIp);
-  }, [meuIp]);
-
-  if (!meuIp) {
-    return <h1>Load</h1>;
-  }
+  }, []);
 
   return (
     <div className={styles.container}>
