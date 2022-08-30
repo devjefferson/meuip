@@ -1,23 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
+import Axios from "axios";
+
 const Home: NextPage = () => {
   const [meuIp, setMeuIp] = useState();
 
   async function webIp() {
-    const Ip = await fetch("http://ip-api.com/json/", {
+    await Axios({
       method: "GET",
+      baseURL: "http://ip-api.com/json/",
+    }).then(({ data }) => {
+      setMeuIp(data.query);
     });
-
-    setMeuIp((await Ip.json()).query);
   }
 
   useEffect(() => {
     webIp();
-    console.log("ip2:", meuIp);
+    console.log("ip:", meuIp);
   }, []);
 
   return (
