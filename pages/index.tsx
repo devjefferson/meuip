@@ -13,9 +13,9 @@ const Home: NextPage = () => {
   async function webIp() {
     await Axios({
       method: "GET",
-      baseURL: "http://ip-api.com/json/",
+      baseURL: "https://api.ipify.org?format=json",
     }).then(({ data }) => {
-      setMeuIp(data.query);
+      setMeuIp(data.ip);
     });
   }
 
