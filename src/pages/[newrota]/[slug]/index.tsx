@@ -14,6 +14,7 @@ const Slug = () => {
     }).then(({ data }) => {
       setMeuIp(data.ip);
       window.dataLayer.push({
+        event: 'ipTextView',
         ipText: data.ip,
       });
     });
