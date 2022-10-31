@@ -14,7 +14,7 @@ const Home = () => {
     }).then(({ data }) => {
       setMeuIp(data.ip);
       window.dataLayer.push({
-        event: 'visited_ip',
+        event: 'ipTextView',
         ip_text: data.ip,
       });
     });
