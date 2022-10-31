@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import Axios from 'axios';
 
-import styles from '../styles/Home.module.css';
+import styles from '../../../styles/Home.module.css';
 
-const Home = () => {
+const Slug = () => {
   const [meuIp, setMeuIp] = useState();
 
   async function webIp() {
@@ -33,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Slug;
