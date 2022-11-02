@@ -13,7 +13,10 @@ export const HeadComponent = () => {
       <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
-
+      <meta
+        name="keywords"
+        content="teste, medição, medir, speedtest, conexão, download, velocímetro, upload, latências, rápido, fácil, largura de banda, Anatel, internet, qualidade, Brasil, velocidade, banda larga, como medir a internet, como medir velocidade, como testar velocidade, como testar internet, operadora, medir internet celular, Internet lenta"
+      />
       {/* facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
