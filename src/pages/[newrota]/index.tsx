@@ -3,23 +3,14 @@ import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
 import styles from '../../styles/Home.module.css';
+import { GetIP } from '@Services/ApiGetIp';
 
 const Page = () => {
-  const [meuIp, setMeuIp] = useState();
+  const [meuIp, setMeuIp] = useState('');
 
-  async function webIp() {
-    await Axios({
-      method: 'GET',
-      baseURL: process.env.NEXT_PUBLIC_API_IP,
-    }).then(({ data }) => {
-      setMeuIp(data.ip);
-      window.dataLayer.push({
-        event: 'ipTextView',
-        ipText: data.ip,
-      });
-    });
+  function webIp() {
+    GetIP().then((res) => setMeuIp(res));
   }
-
   useEffect(() => {
     webIp();
   }, []);
