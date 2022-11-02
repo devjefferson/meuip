@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 
 import { GetIP } from '@Services/ApiGetIp';
 
+import { NextPageWithLayout } from './_app';
 import styles from '../styles/Home.module.css';
+import Layout from 'src/component/Layout';
 
-const Home = () => {
+const Home: NextPageWithLayout = () => {
   const [meuIp, setMeuIp] = useState('');
 
   function webIp() {
@@ -22,6 +24,10 @@ const Home = () => {
       </main>
     </div>
   );
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export default Home;
